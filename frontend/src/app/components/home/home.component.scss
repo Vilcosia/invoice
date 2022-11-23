@@ -1,0 +1,39 @@
+.container{
+    width: 100%;
+    height: 100%;
+   
+   //background-image: -webkit-image-set('../assets/image.png');
+   background-image: image('../assets/image.png');
+}
+.login{
+
+    color: black;
+    border:none;
+    background-color: white;
+    margin-left: 60%;
+    padding: 1rem;
+    font-weight:bolder;
+    width: 101;
+    height: 20;
+}
+
+.register{
+
+    color: black;
+    border:none;
+    background-color: white;
+    font-weight:bolder;
+}
+.slogan{
+  text-align:center;
+  padding-top: 18rem ;
+  font-weight: bolder;
+}
+
+.image{
+    width: 253px;
+    height: 219px;
+    position:relative;
+    
+    
+}
