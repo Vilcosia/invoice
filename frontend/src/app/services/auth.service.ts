@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
   providedIn: 'root'
 })
 export class AuthService {
-  api = 'http://localhost:8080/api';
+  api = 'http://localhost:8080/api/user';
   token !: string;
   loggedInUsername !: string;
   jwtHelper = new JwtHelperService();

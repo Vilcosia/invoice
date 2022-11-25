@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 //import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
+
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { JwtService } from 'src/app/services/jwt.service';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   });
 
 
-  constructor(private authService: AuthService,private toastr:ToastrService,private router:Router,private jwt :JwtService,private spinner: NgxSpinnerService) { }
+  constructor(private authService: AuthService,private router:Router,private jwt :JwtService,private spinner: NgxSpinnerService) { }
  
 
   ngOnInit(): void {
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
         
 
     },(error:HttpErrorResponse)=>{
-      this.toastr.error(error.error.message);
+      //this.toastr.error(error.error.message);
     })
     )    
   }

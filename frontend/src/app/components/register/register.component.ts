@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
     
   });
 
-  constructor(private authService: AuthService, private router: Router,private toastr: ToastrService,private spinner:NgxSpinnerService) { }
+  constructor(private authService: AuthService, private router: Router,private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.spinner.show();
@@ -44,14 +44,14 @@ export class RegisterComponent implements OnInit {
         this.subscriptions.push(
           this.authService.register(form.value).subscribe((response:any)=>{
             this.router.navigateByUrl('/login');
-            this.toastr.success("Welcome to Maphoskho "+form.value.name+"!");
+            //this.toastr.success("Welcome to Maphoskho "+form.value.name+"!");
           },(error:HttpErrorResponse)=>{
-            this.toastr.error(JSON.stringify(error.error.message));
+            //this.toastr.error(JSON.stringify(error.error.message));
             console.log(error)
           })
         )
       }else{
-        this.toastr.warning("Passwords do not match");
+        //this.toastr.warning("Passwords do not match");
       }
      }
 
