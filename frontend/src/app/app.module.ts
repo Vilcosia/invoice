@@ -10,10 +10,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-//import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule,FormBuilder } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+//import { SweetAlert2Module } from "@sweetalert2/ngx-sweetalert2";
+//import {Swal} from "@sweetalert2/ngx-sweetalert2"
+
 
 
 
@@ -32,11 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    //ToastrModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    
+    //SweetAlert2Module.forRoot()
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

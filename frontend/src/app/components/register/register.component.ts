@@ -1,61 +1,75 @@
+
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-//import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import Validation from './userValidator';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
+
 export class RegisterComponent implements OnInit {
-
-  private subscriptions : Subscription[] = [];
-
-  registerForm = new FormGroup({
-    password: new FormControl(),
-    email: new FormControl(),
-    firstname: new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]),
-    lastname: new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]*$')]),
-    confirmPassword: new FormControl(),
+  
+  registerForm: FormGroup = new FormGroup({
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+    confirmPassword: new FormControl(''),
     
   });
+  submitted = false;
 
-  constructor(private authService: AuthService, private router: Router,private spinner:NgxSpinnerService) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends afteseconds */
-      this.spinner.hide();
-    }, 1000);
+    this.registerForm = this.formBuilder.group(
+      {
+        firstname: ['', Validators.required],
+        lastname: ['',Validators.required
+          
+        ],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6)
+            
+          ]
+        ],
+        confirmPassword: ['', Validators.required],
+       
+      },
+      {
+        validators: [Validation.match('password', 'confirmPassword')]
+      }
+    );
+  }
+  get f(): { [key: string]: AbstractControl } {
+    return this.registerForm.controls;
   }
 
-  onRegister(form : FormGroup)
-  {
-    if(form.valid)
-    {
-      if(form.value.confirmPassword == form.value.password)
-      {
-        this.subscriptions.push(
-          this.authService.register(form.value).subscribe((response:any)=>{
-            this.router.navigateByUrl('/login');
-            //this.toastr.success("Welcome to Maphoskho "+form.value.name+"!");
-          },(error:HttpErrorResponse)=>{
-            //this.toastr.error(JSON.stringify(error.error.message));
-            console.log(error)
-          })
-        )
-      }else{
-        //this.toastr.warning("Passwords do not match");
-      }
-     }
+  onSubmit(): void {
+    this.submitted = true;
 
+    if (this.registerForm.invalid) {
+      return;
     }
 
+    console.log(JSON.stringify(this.registerForm.value, null, 2));
+  }
+
+  onReset(): void {
+    this.submitted = false;
+    this.registerForm.reset();
+  }
   
 }
