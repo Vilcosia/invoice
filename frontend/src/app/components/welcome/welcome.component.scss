@@ -1,0 +1,74 @@
+
+
+
+.bottom{
+    background-color: #CFBD1C;
+    height: 586px;
+   
+    padding: auto;
+
+   
+}
+
+
+.heading{
+
+    color: white;
+    font-weight:bolder;
+    font-size: larger;
+    padding-left: 1rem;
+}
+
+
+.card{
+    background-color: black;
+    color: white;
+    text-align: center;
+    width: 171px;
+    height: 109px;
+    margin: auto;
+}
+
+.navbar{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    
+    width: 318px;
+    height: 43px;
+    text-align: right;
+   
+}
+
+.icon{
+   width: 78px;
+   height: 70px;
+  
+
+}
+
+.button{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-weight: bolder;
+    
+    
+    
+}
+.profile{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: .2rem;
+    width: fit-content;
+}
+
+.name-and-pic{
+    display: flex;
+    flex-direction: row;
+    gap: .3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding-right: .4rem;
+    
+}

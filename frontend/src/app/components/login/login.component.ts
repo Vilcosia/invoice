@@ -28,14 +28,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-  //   this.spinner.show();
-  //   if(localStorage.getItem('token')!= null && localStorage.getItem('account') == "Client")
-  //   {
-  //     this.router.navigateByUrl('/client');
-  //   }else if(localStorage.getItem('token')!= null && localStorage.getItem('account') == "Freelancer"){
-
-  //     this.router.navigateByUrl('/freelancer');
-  //   }
+    this.spinner.show();
+   
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
@@ -56,12 +50,12 @@ export class LoginComponent implements OnInit {
         this.authService.saveToken(data.token);
         
 
-        const {email,firstname,surname,user_id,image} = this.jwt.getData(data.token);
+        const {email,firstname,lastname,user_id} = this.jwt.getData(data.token);
         localStorage.setItem('email',email);
-        localStorage.setItem('surname',surname);
         localStorage.setItem('firstname',firstname);
+        localStorage.setItem('lastname',lastname);
         localStorage.setItem('user_id',user_id);
-        localStorage.setItem('image_link',image);
+       
 
         
 

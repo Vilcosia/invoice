@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
+//import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import Validation from './userValidator';
@@ -16,6 +16,8 @@ import Validation from './userValidator';
 
 
 export class RegisterComponent implements OnInit {
+
+  private subscriptions : Subscription[] = [];
   
   registerForm: FormGroup = new FormGroup({
     firstname: new FormControl(''),
@@ -27,15 +29,17 @@ export class RegisterComponent implements OnInit {
   });
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group(
       {
-        firstname: ['', Validators.required],
-        lastname: ['',Validators.required
+        firstname: ['', Validators.required,Validators.pattern('^[a-zA-Z ]*$'),
+        Validators.minLength(3)],
+        lastname: ['',Validators.required,Validators.pattern('^[a-zA-Z ]*$'),
+         Validators.minLength(3)],
           
-        ],
+        
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
@@ -57,19 +61,52 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  onSubmit(): void {
+  onRegister(): void {
     this.submitted = true;
 
     if (this.registerForm.invalid) {
       return;
+      
     }
+    
+    else{
+      this.authService.register(this.registerForm.value).subscribe((response:any)=>{
+        console.log(response);
+        this.router.navigateByUrl('/login');
+      })
 
+    }
     console.log(JSON.stringify(this.registerForm.value, null, 2));
+
+    
   }
 
   onReset(): void {
     this.submitted = false;
     this.registerForm.reset();
   }
+
+  get firstname(){
+    return this.registerForm.get('firstname');
+
+  }
+
+  get lastname(){
+    return this.registerForm.get('lastname');
+
+  }
+
+  get email(){
+    return this.registerForm.get('email');
+  }
+  get password(){
+    return this.registerForm.get('password');
+
+  }
+
+  get confirmpassword(){
+    return this.registerForm.get('confirmpassword');
+}
+
   
 }
