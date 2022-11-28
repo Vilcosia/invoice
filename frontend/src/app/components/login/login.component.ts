@@ -45,6 +45,8 @@ export class LoginComponent implements OnInit {
         this.spinner.hide();
         }, 2000);
 
+        console.log(form.value);
+
     this.subscriptions.push(
       this.authService.login(form.value).subscribe((data: any)=>{
         this.authService.saveToken(data.token);
@@ -56,7 +58,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('lastname',lastname);
         localStorage.setItem('user_id',user_id);
        
-
+        this.router.navigateByUrl('/welcome');
         
 
     },(error:HttpErrorResponse)=>{

@@ -6,7 +6,7 @@ require('dotenv').config();
 
 
 const db = new Pool({
-    user: "postgres" ,
+    user: "admin" ,
     host:"localhost",  
     database: "maphoskho_db", 
     password: "admin12345", 
@@ -68,12 +68,12 @@ exports.login =  (req, res)=>{
                         const token = jwt.sign({
                                 user_id: results.rows[0].user_id,
                                 email: results.rows[0].email,
-                                fisrtname: results.rows[0].name,
-                                lastname: results.rows[0].surname,
+                                fisrtname: results.rows[0].firstname,
+                                lastname: results.rows[0].lastname,
                                 password: results.rows[0].password,
                                 
                             },
-                            process.env.SECRET_KEY,{
+                            "process.env.SECRET_KEY",{
                                 algorithm: 'HS256',
                                 expiresIn: 120
                             });

@@ -34,10 +34,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group(
       {
-        firstname: ['', Validators.required,Validators.pattern('^[a-zA-Z ]*$'),
-        Validators.minLength(3)],
-        lastname: ['',Validators.required,Validators.pattern('^[a-zA-Z ]*$'),
-         Validators.minLength(3)],
+        firstname: ['', Validators.required,Validators.minLength(3)],
+        lastname: ['',Validators.required,Validators.minLength(3)],
           
         
         email: ['', [Validators.required, Validators.email]],
@@ -61,8 +59,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  onRegister(): void {
+  onRegister(form : FormGroup): void {
     this.submitted = true;
+    console.log(form.value)
 
     if (this.registerForm.invalid) {
       return;
@@ -86,27 +85,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.reset();
   }
 
-  get firstname(){
-    return this.registerForm.get('firstname');
-
-  }
-
-  get lastname(){
-    return this.registerForm.get('lastname');
-
-  }
-
-  get email(){
-    return this.registerForm.get('email');
-  }
-  get password(){
-    return this.registerForm.get('password');
-
-  }
-
-  get confirmpassword(){
-    return this.registerForm.get('confirmpassword');
-}
+ 
 
   
 }
