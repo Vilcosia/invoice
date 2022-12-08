@@ -43,7 +43,8 @@ export class RegisterComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.minLength(6)
+            Validators.minLength(6),
+            Validators.pattern('(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[$@$!%?&])[A-Za-zd$@$!%?&].{6,15}')
             
           ]
         ],
@@ -72,6 +73,8 @@ export class RegisterComponent implements OnInit {
       this.authService.register(this.registerForm.value).subscribe((response:any)=>{
         console.log(response);
         this.router.navigateByUrl('/login');
+
+        console.log(form.value)
       })
 
     }
