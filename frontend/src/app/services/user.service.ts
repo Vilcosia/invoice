@@ -20,17 +20,17 @@ export class UserService {
   }
 
   
-  // updateProfile(user_id:any ,form:any)
-  // {
-  //   return this.http.patch(this.baseUrl+'/update/'+user_id,form);
+   updateProfile(user_id:any ,form:any)
+   {
+    return this.http.patch(this.baseUrl+'/update/'+user_id,form);
 
-  // }
+   }
 
-  // updateProfilePicture(user_id:any,link:any)
-  // {
-  //   return this.http.patch(this.baseUrl+'/updateProfilePicture/'+user_id, link);
+   updateProfilePicture(user_id:any,link:any)
+  {
+    return this.http.patch(this.baseUrl+'/updateProfilePicture/'+user_id, link);
 
-  // }
+   }
 
 
  
@@ -41,6 +41,27 @@ export class UserService {
     return this.http.get(this.baseUrl+'/getOneUser/'+user_id);
   }
 
+ 
+
+  getClients(){
+    return this.http.get(this.baseUrl+'/getClients/'+localStorage.getItem('user_id'))
+
+  }
+  updateClient(){
+    return this.http.get(this.baseUrl+'/updateClients/'+localStorage.getItem('user_id'))
+  }
+
+  getInvoices(){
+    return this.http.get(this.baseUrl+'/getInvoice/'+localStorage.getItem('user_id'))
+
+  }
+AddClient(){
+  return this.http.get(this.baseUrl+'/getInvoice/'+localStorage.getItem('user_id'))
+}
+ 
+deleteClient(){
+  
+}
 
 
 

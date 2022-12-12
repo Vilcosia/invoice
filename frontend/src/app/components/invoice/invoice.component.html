@@ -1,0 +1,248 @@
+
+
+<nav class="navbar navbar-light navbar-expand navigation-clean">
+    <div class="container"><a class="navbar-brand" href="#">
+            <picture><img src="assets/logo.png" style="height: 70px;"></picture>
+        </a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#" style="background: #151515;border-radius: 10px;color: rgb(255,255,255);padding-right: 1rem;">Koketso&nbsp;<picture><img src="assets/img/2289_SkVNQSBGQU1PIDEwMjgtMTIy.jpg" style="height: 30px;"></picture></a></li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+<br>
+<div class="container-fluid">
+  <div class="container" style="background: #CFBD1C;height: 530px;">
+    <br>
+
+    <div class ="heading" style="font-weight:bolder;font-size:x-large;">Invoices<button type="button" style="border: none; background-color: transparent;margin-left: 3rem; "> 
+        <i (click)="toggleShow()" class="bi bi-plus-circle"></i>
+     </button></div>
+
+    
+     <!-- Modal -->
+     <div class="modal fade" id="addJob" tabindex="-1" role="dialog" aria-labelledby="addJobLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="addJobLabel">Job Post</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+           </div>
+   
+   
+           <div class="modal-body">
+             <!-- Modal Body to fill in posting form-->
+   
+             <!-- Post Inputs-->
+             <!-- <form [formGroup]="jobPostForm" (ngSubmit)="onSubmit(jobPostForm)"> -->
+             <div class="postTit">
+              
+               Title 
+               <div class="postTitle">
+                       <div class="titleInp"> <input type="text"
+                        class="form-control" 
+                        id="postTitle" 
+                        formControlName="title" minlength="10">
+                       </div>
+                   <div class="userTit"> <i class="bi bi-laptop"></i> </div>
+               </div>
+          
+            </div>
+              
+            <div class="postPrice">
+        
+               Price 
+                   <div class="priceInp"> <input type="number"
+                       class="form-control"
+                       id="postPrice"
+                       formControlName="price">
+                      
+                       <div class="userTit"> <i class="bi bi-currency-dollar"></i> </div>
+                   </div>  
+               
+           </div>
+        
+           <div class="descrTitl">
+              
+                   Description 
+                   <div class="descrInf"> 
+                       
+                       <textarea name="postDescription"
+                        id="postDescription" 
+                        class="form-control"
+                        formControlName="description"
+                        cols="30" rows="10" minlength="10" required > </textarea>
+                   </div>
+   
+           </div>
+            <!-- Post Inputs-->
+           
+   
+   
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" >Cancel</button>
+             <button type="submit" class="btn btn-secondary" >Post</button>
+           </div>
+       <!-- </form> -->
+         </div>
+       </div>
+     </div>
+    </div>
+    <!--Modal ends-->
+       
+       <div class="tablebeg ">
+           
+       <table class="table table-striped rounded ">
+           <thead class="thead-inverse" style="background-color: black;color: white;">
+               <tr>
+                   
+                   <th class="hed2">InvoiceNr</th>
+                   <th class="hed3">Client</th>
+                   <th class="hed3">Servise</th>
+                   <th class="hed3">Amount</th>
+                   <th class="hed3">Status</th>
+                   
+               </tr>
+               </thead>
+               <tbody>
+                   <!-- <tr *ngFor="let post of posts"> -->
+                       
+                       <td class="desc" scope="row"></td>
+                       <td class="actionBut" scope="row"> 
+                           <!-- <div class="actEdt"> <button type="button" class="edtBtn" (click)="setDetails(post.post_id,post.post_title,post.post_desc,post.post_price)" data-toggle="modal" data-target="#updateJob">  <i class="bi-pencil-square"></i></button></div>   
+                           <div class="actDel"> <button class="delBtn" (click)="deleteClient(post.post_id)"> <i class="bi-trash-fill"> </i> </button> </div> -->
+                       </td>
+                       <td></td>
+                       <td></td>
+                       <td class="status" scope="row">
+                         <select class="form-select form-select-sm" >
+                           <!-- <option [value]="status">{{post.status}}</option> -->
+                           <option value="In Progress">Pending</option>
+                           <option value="Completed">Paid</option>
+                         </select>
+   
+   
+                       </td>
+                      
+                   <!-- </tr> -->
+                  
+               </tbody>
+       </table>
+
+       <table *ngIf="isShown" class="table table-striped rounded ">
+         <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+         </thead>
+         <tbody>
+            <tr>
+                
+                <td>
+                    <input>
+                </td>
+                <td>
+                    <input>
+                </td>
+                <td>
+                    <input>
+                </td>
+                <td>
+                    <input>
+                </td>
+                <td>
+                    <input>
+                </td>
+            </tr>
+         </tbody>
+       </table>
+       
+       
+       </div>
+       
+   
+       </div>
+   
+       
+   
+   
+       <!-- Modal -->
+     <div class="modal fade" id="updateJob" tabindex="-2" role="dialog" aria-labelledby="addJobLabel" aria-hidden="true">
+       <div class="modal-dialog" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="addJobLabel">Update Post</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+           </div>
+   
+   
+           <div class="modal-body">
+             <!-- Modal Body to fill in posting form-->
+   
+             <!-- Post Inputs-->
+             <!-- <form [formGroup]="" > -->
+             <div class="postTit">
+              
+               Title 
+               <div class="postTitle">
+                       <div class="titleInp"> <input type="text"
+                        class="form-control" 
+                        id="postTitle" 
+                        formControlName="post_title" minlength="10" >
+                       </div>
+                   <div class="userTit"> <i class="bi bi-laptop"></i> </div>
+               </div>
+          
+            </div>
+              
+            <div class="postPrice">
+        
+               Price 
+                   <div class="priceInp"> <input type="number"
+                       class="form-control"
+                       id="postPrice"
+                       formControlName="post_price" >
+                      
+                       <div class="userTit"> <i class="bi bi-currency-dollar"></i> </div>
+                   </div>  
+               
+           </div>
+        
+           <div class="descrTitl">
+              
+                   Description 
+                   <div class="descrInf"> 
+                       
+                       <textarea name="postDescription"
+                        id="postDescription" 
+                        class="form-control"
+                        formControlName="post_desc"
+                        cols="30" rows="10" minlength="10"  required > </textarea>
+                   </div>
+   
+           </div>
+            <!-- Post Inputs-->
+           
+   
+   
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" >Cancel</button>
+             <button type="submit" class="btn btn-secondary" >Post</button>
+           </div>
+       <!-- </form> -->
+         </div>
+       </div>
+     </div>
+    </div>
+    <!--Modal ends-->
+   
+   
+   
+   
+   
+   
+      
+

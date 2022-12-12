@@ -7,6 +7,7 @@ const app = express();
 //impot classes
 //const routes = require("./routes/routes");
 const userRoute = require("./routes/userRoute");
+const clientRoute = require("./routes/clientRoute");
 
 var corsOptions = {
     origin: "*"
@@ -26,5 +27,6 @@ if(db)
     console.log("Database is connected");
 }
 app.use('/api/user', userRoute);
+app.use('/api/client',clientRoute)
 
 

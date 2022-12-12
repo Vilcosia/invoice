@@ -120,3 +120,20 @@ exports.updateUser = async (req, res)=>{
     
       })
 }
+
+exports.updateImage = async (req,res) => {
+    //console.log(req.body.link)
+
+    const link = req.body.link;
+    const user_id = req.params.user_id;
+
+    db.query('UPDATE users SET image = $1 WHERE user_id = $2',[link,user_id],(err,results)=>{
+        if(err){
+            res.status(400).json({message:err.message});
+        }else
+        {
+            res.status(200).json({message:'Your profile picture was updated successfully'});
+        }
+
+    })
+}
