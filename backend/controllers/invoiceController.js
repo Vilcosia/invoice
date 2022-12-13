@@ -10,20 +10,20 @@ const db = new Pool({
 
 
 exports.addInvoice = async (req, res)=>{
-    const user_id = req.params.user_id;
-    const {title, price , description } = req.body;
+    
+    const {client, service , amount } = req.body;
     //const freelancer = req.params.freelancer;
     
-    const sql = 'INSERT INTO invoices (post_price, post_title, post_desc, user_id, hidden,status) VALUES ($1,$2,$3,$4,$5,$6) RETURNING post_id';
+    const sql = 'INSERT INTO invoices (client, service , amount,status) VALUES ($1,$2,$3,$4) RETURNING invoice_id';
  
-    db.query(sql,[price,title , description , user_id, false,"No Status"],(err,results)=>{
+    db.query(sql,[client,service ,amount ,"pending"],(err,results)=>{
         if(err)
         {
-            
+            console.log(err)
             res.status(400).json({message:'Query failed'});
         }else
         {
-            res.status(200).json({message: 'Your post was successfully added '});
+            res.status(200).json({message: 'Your invoice was successfully added '});
         }
 
     });
@@ -31,10 +31,10 @@ exports.addInvoice = async (req, res)=>{
 
 
 
-exports.getPosts = async (req, res)=>{
+exports.getInvoice = async (req, res)=>{
 
-    const sql = 'SELECT * FROM invoices WHERE   status = $1';
-    db.query(sql,[false,'No Status'],(error,results)=>{
+    const sql = 'SELECT * FROM invoices ';
+    db.query(sql,(error,results)=>{
         if(error)
         {
             res.status(400).json({message:'Query failed'});
@@ -51,8 +51,8 @@ exports.getPosts = async (req, res)=>{
 exports.getPaid = async (req, res)=>{
     
     paid= 'Paid';
-    const sql = 'SELECT * FROM invoices WHERE status = $1 and (user_id = $2)';
-    db.query(sql,[paid,req.params.user_id,req.params.user_id],(error,results)=>{
+    const sql = 'SELECT * FROM invoices WHERE status = $1 ';
+    db.query(sql,[paid,req.params.ivoice_id,req.params.invoice_id],(error,results)=>{
         if(error)
         {
             res.status(400).json({message:'Query failed'});
@@ -69,7 +69,7 @@ exports.getPaid = async (req, res)=>{
 
 exports.getPending = async (req, res)=>{
     pending = 'Pending';
-    const sql = 'SELECT * FROM invoices WHERE (user_id = $2  and status = $1 ';
+    const sql = 'SELECT * FROM invoices WHERE status = $1 ';
     db.query(sql,[pending,req.params.user_id,req.params.user_id],(error,results)=>{
         if(error)
         {
@@ -87,7 +87,7 @@ exports.getPending = async (req, res)=>{
 exports.getOneInvoice = async (req, res)=>{
     const user_id = req.params.user_id;
 
-    const sql = 'SELECT * FROM invoices WHERE user_id = $1';
+    const sql = 'SELECT * FROM invoices WHERE invoice_id = $1';
     db.query(sql,[user_id],(error,results)=>{
         if(error)
         {
@@ -105,9 +105,9 @@ exports.getOneInvoice = async (req, res)=>{
 exports.getInvoices = async (req, res)=>{
 
 
-    const user_id = req.params.user_id;
+    // const invoice_id = req.params.invoce_id;
     const sql = 'SELECT * FROM invoices WHERE user_id = $1 ';
-    db.query(sql,[user_id,false],(error,results)=>{
+    db.query(sql,[invoice_id],(error,results)=>{
         if(error)
         {
             res.status(400).json({message:'Query failed'});
@@ -121,22 +121,22 @@ exports.getInvoices = async (req, res)=>{
     
 }
 
-exports.deleteInvoice = async (req, res)=>{
+// exports.deleteInvoice = async (req, res)=>{
 
-    const sql = 'UPDATE invoices SET hidden = $2 WHERE invoice_id = $1';
-    db.query(sql,[req.params.invoice_id,true],(error,results)=>{
-        if(error)
-        {
-            res.status(400).json({message:'Query failed'});
-        }else{
+//     const sql = 'UPDATE invoices SET hidden = $2 WHERE invoice_id = $1';
+//     db.query(sql,[req.params.invoice_id,true],(error,results)=>{
+//         if(error)
+//         {
+//             res.status(400).json({message:'Query failed'});
+//         }else{
 
-            res.status(200).json({message:'Invoice Deleted'});
+//             res.status(200).json({message:'Invoice Deleted'});
 
-        }
+//         }
 
-    })
+//     })
     
-}
+// }
 
 
 

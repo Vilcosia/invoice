@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
+//import { NgxSpinnerService } from 'ngx-spinner';
+//import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-welcome',
@@ -8,19 +11,24 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class WelcomeComponent implements OnInit {
 
-  clients: any [] = [];
-  invoices : any [] = [];
+  client: any [] = [];
+  invoice : any [] = [];
 
-  constructor(  private userService : UserService) { }
+  constructor(private userService : UserService,private router:Router) { }
 
 
 
   ngOnInit(): void {
 
-    this.userService.getInvoices().subscribe((data:any) => {
+    // this.router.navigate(['path/to'])
+    // .then(() => {
+    //   window.location.reload();
+    // });
+
+    this.userService.getInvoice().subscribe((data:any) => {
     
       if(data.length != 0){
-        this.invoices = data;
+        this.invoice = data;
       }
 
     })
@@ -28,7 +36,7 @@ export class WelcomeComponent implements OnInit {
     this.userService.getClients().subscribe((data:any) => {
  
       if(data.length != 0){
-        this.clients = data;
+        this.client = data;
       }
 
     })

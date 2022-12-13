@@ -8,6 +8,7 @@ const app = express();
 //const routes = require("./routes/routes");
 const userRoute = require("./routes/userRoute");
 const clientRoute = require("./routes/clientRoute");
+const invoiceRoute = require("./routes/invoiceRoute");
 
 var corsOptions = {
     origin: "*"
@@ -27,6 +28,7 @@ if(db)
     console.log("Database is connected");
 }
 app.use('/api/user', userRoute);
-app.use('/api/client',clientRoute)
+app.use('/api/client',clientRoute);
+app.use('/api/invoice',invoiceRoute);
 
 

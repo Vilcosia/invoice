@@ -41,27 +41,41 @@ export class UserService {
     return this.http.get(this.baseUrl+'/getOneUser/'+user_id);
   }
 
- 
+  addClient(data:any){
+    return this.http.post(this.baseUrl+'/client',data)
+
+  }
 
   getClients(){
-    return this.http.get(this.baseUrl+'/getClients/'+localStorage.getItem('user_id'))
+    return this.http.get(this.baseUrl+'/client')
 
   }
-  updateClient(){
-    return this.http.get(this.baseUrl+'/updateClients/'+localStorage.getItem('user_id'))
-  }
 
-  getInvoices(){
-    return this.http.get(this.baseUrl+'/getInvoice/'+localStorage.getItem('user_id'))
+  getOneClient(){
+    return this.http.get(this.baseUrl+'/getClients/'+localStorage.getItem('client_id'))
 
   }
-AddClient(){
-  return this.http.get(this.baseUrl+'/getInvoice/'+localStorage.getItem('user_id'))
-}
+
+
+  addInvoice(data:any){
+    return this.http.post(this.baseUrl+'/invoice',data)
+  }
+
+  updateInvoice(){
+    return this.http.get(this.baseUrl+'/updateInvoice/'+localStorage.getItem('invoice_id'))
+  }
+
+  getInvoice(){
+    return this.http.get(this.baseUrl+'/invoice')
+
+  }
+// AddClient(){
+//   return this.http.get(this.baseUrl+'/getInvoice/'+localStorage.getItem('user_id'))
+// }
  
-deleteClient(){
+// deleteClient(){
   
-}
+// }
 
 
 

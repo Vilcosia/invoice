@@ -10,13 +10,13 @@ const db = new Pool({
 
 
 exports.addClient = async (req, res)=>{
-    const user_id = req.params.user_id;
+    
     const {fullName, phoneNr , email,service } = req.body;
     
     
-    const sql = 'INSERT INTO clients (fullName, phoneNr, email,service, user_id) VALUES ($1,$2,$3,$4,$5,$6) RETURNING client_id';
+    const sql = 'INSERT INTO clients (fullName, phoneNr, email,service) VALUES ($1,$2,$3,$4) RETURNING client_id';
  
-    db.query(sql,[fullName,phoneNr , email ,service, user_id],(err,results)=>{
+    db.query(sql,[fullName,phoneNr , email ,service],(err,results)=>{
         if(err)
         {
             
@@ -33,8 +33,8 @@ exports.addClient = async (req, res)=>{
 
 exports.getClients = async (req, res)=>{
 
-    const sql = 'SELECT * FROM clients WHERE user_id = $1';
-    db.query(sql,[user_id],(error,results)=>{
+    const sql = 'SELECT * FROM clients ';
+    db.query(sql,[client_id],(error,results)=>{
         if(error)
         {
             res.status(400).json({message:'Query failed'});
@@ -53,10 +53,10 @@ exports.getClients = async (req, res)=>{
 
 
 exports.getOneClient = async (req, res)=>{
-    const user_id = req.params.user_id;
+    
 
-    const sql = 'SELECT * FROM clients WHERE user_id = $1';
-    db.query(sql,[user_id],(error,results)=>{
+    const sql = 'SELECT * FROM clients WHERE client_id = $1';
+    db.query(sql,[client_id],(error,results)=>{
         if(error)
         {
             res.status(400).json({message:'Query failed'});
