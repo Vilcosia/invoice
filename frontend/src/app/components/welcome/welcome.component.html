@@ -105,7 +105,7 @@
               </svg></button>
           <div class="collapse navbar-collapse" id="navcol-3" style="border-radius: 10px;">
               <ul class="navbar-nav float-end ms-auto" style="background: #000000;border-radius: 10px;font-size: 13px;">
-                  <li class="nav-item" ><a class="nav-link ">Dashboard</a></li>
+                  <li class="nav-item" ><a class="nav-link " routerLink="/welcome">Dashboard</a></li>
                   <li class="nav-item"><a class="nav-link" >Invoices</a></li>
                   <li class="nav-item"><a class="nav-link" >Clients</a></li>
                   <li class="nav-item"><a class="nav-link" >Profile</a></li>
@@ -122,7 +122,7 @@
           <div class="card" style="border-style: none;border-radius: 10px;">
               <div class="card-body" style="background: #000000;border-radius: 10px;">
                   <h4 class="card-title" style="text-align: center;color: rgb(255,255,255);">Clients</h4>
-                  <h6 class="card-subtitle mb-2" style="text-align: center;color: #fff;">0</h6>
+                  <h6 class="card-subtitle mb-2" style="text-align: center;color: #fff;">{{client.length}}</h6>
               </div>
           </div>
       </div>
@@ -130,7 +130,7 @@
           <div class="card" style="border-style: none;border-radius: 10px;">
               <div class="card-body" style="background: #000000;border-radius: 10px;">
                   <h4 class="card-title" style="text-align: center;color: #fff;">Invoices</h4>
-                  <h6 class="card-subtitle mb-2" style="text-align: center;color: #fff;">0</h6>
+                  <h6 class="card-subtitle mb-2" style="text-align: center;color: #fff;">{{invoice.length}}</h6>
               </div>
           </div>
       </div>

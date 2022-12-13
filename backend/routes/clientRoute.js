@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.post('/',user.addClient);
 
-router.post('/getClients',user.getClients);
+router.get('/getClients',user.getClients);
 
 //router.patch('/update/:client_id',user.updateClient);
 

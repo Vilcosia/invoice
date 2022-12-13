@@ -1,7 +1,7 @@
 
 const Pool = require('pg').Pool;
 const db = new Pool({
-    user: 'admin',  //Database username
+    user: 'postgres',  //Database username
     host: 'localhost',  //Database host
     database: 'maphoskho_db', //Database database
     password: 'admin12345', //Database password
@@ -11,15 +11,15 @@ const db = new Pool({
 
 exports.addClient = async (req, res)=>{
     
-    const {fullName, phoneNr , email,service } = req.body;
+    const {fullname, phone_no , email,service } = req.body;
     
     
-    const sql = 'INSERT INTO clients (fullName, phoneNr, email,service) VALUES ($1,$2,$3,$4) RETURNING client_id';
+    const sql = 'INSERT INTO clients (fullname, phone_no, email,service) VALUES ($1,$2,$3,$4) RETURNING client_id';
  
-    db.query(sql,[fullName,phoneNr , email ,service],(err,results)=>{
+    db.query(sql,[fullname,phone_no , email ,service],(err,results)=>{
         if(err)
         {
-            
+            console.log(err);
             res.status(400).json({message:'Query failed'});
         }else
         {
@@ -34,7 +34,7 @@ exports.addClient = async (req, res)=>{
 exports.getClients = async (req, res)=>{
 
     const sql = 'SELECT * FROM clients ';
-    db.query(sql,[client_id],(error,results)=>{
+    db.query(sql,(error,results)=>{
         if(error)
         {
             res.status(400).json({message:'Query failed'});

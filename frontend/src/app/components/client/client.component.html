@@ -45,7 +45,7 @@
           <div class="Input"> <input type="text"
                   class="form-control"
                   id="client"
-                  formControlName="client">
+                  formControlName="fullname">
                  
             </div>      
       </div>
@@ -53,10 +53,11 @@
 
       <div class="client number">
         PhoneNr 
-       <div class="Input"> <input type="number"
+       <div class="Input"> <input type="text"
                class="form-control"
                id="PhoneNr"
-               formControlName="phone">
+               formControlName="Phone_no"
+               cols="30" rows="10" minlength="10" maxlength ="10"required > 
               
          </div>      
    </div>
@@ -66,7 +67,7 @@
    <div class="Input"> <input type="text"
            class="form-control"
            id="client"
-           formControlName="client">
+           formControlName="email">
           
      </div>      
 </div>
@@ -101,15 +102,15 @@
 
 <div class="tablebeg " style="height: 600px;overflow: scroll;">
       
-<table class="table  rounded" style="background-color: gray;color: white;" >
+<table class="table  rounded" style="background-color:hsl(0, 3%, 73%);color: black;font-weight: bolder;" >
     <thead class="thead-inverse ">
         <tr>
             
            
-            <th class="hed3"style="background-color: black;">FullName</th>
-            <th class="hed3"style="background-color: black;">PhoneNr</th>
-            <th class="hed3"style="background-color: black;">Email</th>
-            <th class="hed3"style="background-color: black;">Service</th>
+            <th class="hed3"style="background-color: black; color: white;">FullName</th>
+            <th class="hed3"style="background-color: black;color: white;">PhoneNr</th>
+            <th class="hed3"style="background-color: black;color: white;">Email</th>
+            <th class="hed3"style="background-color: black;color: white;">Service</th>
             
         </tr>
         </thead>
@@ -117,8 +118,8 @@
             <tr *ngFor="let cli  of Clients"> 
 
               
-                <td class="desc" scope="row">{{cli.FullName}}</td>
-                <td class="desc" scope="row">{{cli.PhoneNr}}</td>
+                <td class="desc" scope="row">{{cli.fullname}}</td>
+                <td class="desc" scope="row">{{cli.phone_no}}</td>
                 <td class="desc" scope="row">{{cli.email}}</td>
                 <td class="desc" scope="row">{{cli.service}}</td>
 

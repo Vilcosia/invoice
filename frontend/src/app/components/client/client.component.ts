@@ -25,8 +25,8 @@ export class ClientComponent implements OnInit {
 
   constructor(private userService : UserService, private auth :AuthService, private router:Router) { }
     clientPostForm= new FormGroup({
-    fullName: new FormControl(),
-    PhoneNr: new FormControl(),
+    fullname: new FormControl(),
+    Phone_no: new FormControl(),
     email: new FormControl(),
     service:new FormControl()
   
@@ -36,8 +36,8 @@ export class ClientComponent implements OnInit {
 
   updateClientForm= new FormGroup({
     
-    fullName: new FormControl(),
-    PhoneNr: new FormControl(),
+    fullname: new FormControl(),
+    Phone_no: new FormControl(),
     email: new FormControl(),
     service:new FormControl()
  
@@ -50,19 +50,17 @@ export class ClientComponent implements OnInit {
     
 
     let clientData = {
-      fullNane:form.value.fullName,
-      phoneNr:form.value.phoneNr,
+      fullname:form.value.fullName,
+      phone_no:form.value.phoneNr,
       email:form.value.email,
       service:form.value.service
     }
     console.log(clientData)
 
-    this.userService.addClient
-    (clientData).subscribe((data:any) =>{
+    this.userService.addClient(clientData).subscribe((data:any) =>{
       console.log(data)
+      this.refresh();
      
-     // this.toastr.success(data.message);
-
     },(err: HttpErrorResponse)=>{
 
      // this.toastr.error(err.error.message);
@@ -84,18 +82,18 @@ export class ClientComponent implements OnInit {
 
 refresh()
 {
-  // if(localStorage.getItem('isLoggedIn') =='yes')
-    // {
+  
       
       this.userService.getClients().subscribe((data:any)=>{
-        this.id = data
+        this.Clients = data
         console.log(data)
-        localStorage.setItem('Clients',String(this.id.length));
+        localStorage.setItem('Clients',String(this.Clients.length));
 
       },(err: HttpErrorResponse)=>{
+        console.log(err)
         //this.toastr.error(err.error.message);
       })
-    // }
+    
   
 }
 
@@ -109,12 +107,12 @@ refresh()
 //   })
 // }
 
-setDetails(fullName:any,phoneNr:any,service:any,email:any){
+setDetails(fullname:any,phone_no:any,service:any,email:any){
       
-      this.FullName = fullName;
+      this.FullName = fullname;
       this.Service = service;
       this.Email= email;
-      this.PhoneNr=phoneNr;
+      this.PhoneNr=phone_no;
     }
 
 

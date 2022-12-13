@@ -1,0 +1,106 @@
+@import url('https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+  .action-btn
+  {
+    display: flex;
+    gap: 1.5rem;
+   
+    & .cancel
+    {
+      background-color:white;
+      color: black;
+    }
+    &.btn-secondary
+    {
+      width: 60%;
+    }
+  }
+
+  .cancel:hover
+  {
+      background-color: #2F2E41 !important;
+      color: white !important;
+  }
+  
+  .btn{
+   
+    width: 100%;
+    transition: 500ms;
+    color: rgb(255, 255, 255);
+    background-color:black;
+         
+  }
+  .btn:hover{
+        background-color: transparent;
+        border: 1px solid black;
+        transform: scale(1.015);
+        color:black;
+        font-weight: 700;
+  }
+  .links
+  {
+    & a{
+        text-decoration: none;
+        color: black;
+        transition: 300ms;
+    }
+  
+  }
+  a:hover
+  {
+        cursor: pointer;
+        font-size: 15px;
+        color: black;
+  }
+  .form-div
+  {
+    background-color:#CFBD1C;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+  
+  span{
+    background-color: black;
+    padding: 10px;
+    color: white;
+    border-radius: 0px 5px 5px 0px;
+  }
+  .label-center
+  {
+    align-items: center;
+  }
+  .intro{
+    padding-top: 1.9rem;
+    text-align: center;
+  }
+
+  .image-div
+  {
+    position: relative;
+  }
+  .edit-dp
+  {
+    
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    padding: 0;
+    background-color: transparent;
+    color: black;
+    margin: auto;
+    margin-bottom: .5rem;
+    
+  }
+  .icon{
+    color:black;
+    text-align: center !important;
+    margin: auto;
+    font-size: 13px;
+    width: 50%;
+
+  }
+  
+  
+  
+  
+  

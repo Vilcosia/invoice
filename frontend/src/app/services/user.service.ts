@@ -47,7 +47,7 @@ export class UserService {
   }
 
   getClients(){
-    return this.http.get(this.baseUrl+'/client')
+    return this.http.get(this.baseUrl+'/client/getClients')
 
   }
 

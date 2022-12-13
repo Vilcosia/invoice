@@ -6,7 +6,7 @@ require('dotenv').config();
 
 
 const db = new Pool({
-    user: "admin" ,
+    user: "postgres" ,
     host:"localhost",  
     database: "maphoskho_db", 
     password: "admin12345", 

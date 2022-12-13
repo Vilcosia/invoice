@@ -57,6 +57,7 @@ export class InvoiceComponent implements OnInit {
 
     this.userService.addInvoice(invoiceData).subscribe((data:any) =>{
       console.log(data)
+      this.refresh(); 
      
      // this.toastr.success(data.message);
 
