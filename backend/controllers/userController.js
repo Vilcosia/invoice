@@ -6,7 +6,7 @@ require('dotenv').config();
 
 
 const db = new Pool({
-    user: "postgres" ,
+    user: "admin" ,
     host:"localhost",  
     database: "maphoskho_db", 
     password: "admin12345", 
@@ -52,7 +52,11 @@ exports.login =  (req, res)=>{
     const sql = 'SELECT * FROM users WHERE email = $1 ';
     db.query(sql,[email],(err, results)=>{
         if(err) 
-        {res.status(400).json({message: "Error communicating with database"})}
+        {
+            
+            res.status(400).json({message: "Error communicating with database"})
+        
+        }
         else{
             if(results.rowCount == 0)
             {

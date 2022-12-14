@@ -26,7 +26,7 @@ export class ClientComponent implements OnInit {
   constructor(private userService : UserService, private auth :AuthService, private router:Router) { }
     clientPostForm= new FormGroup({
     fullname: new FormControl(),
-    Phone_no: new FormControl(),
+    phone_no: new FormControl(),
     email: new FormControl(),
     service:new FormControl()
   
@@ -57,7 +57,7 @@ export class ClientComponent implements OnInit {
     }
     console.log(clientData)
 
-    this.userService.addClient(clientData).subscribe((data:any) =>{
+    this.userService.addClient(this.clientPostForm.value).subscribe((data:any) =>{
       console.log(data)
       this.refresh();
      

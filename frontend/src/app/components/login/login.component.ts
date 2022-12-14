@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 //import { JwtHelperService } from '@auth0/angular-jwt';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { JwtService } from 'src/app/services/jwt.service';
+
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
+  
     this.spinner.show();
    
     setTimeout(() => {
@@ -35,6 +37,8 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
     }, 1000);
    }
+
+  
 
   onLogin(form : FormGroup)
   {

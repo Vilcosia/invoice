@@ -11,7 +11,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 
 
 const routes: Routes = [
-  {path:'',component:HomepageComponent},
+  {path:'homepage',component:HomepageComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'welcome',component:WelcomeComponent},
