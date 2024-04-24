@@ -1,12 +1,9 @@
 
+const db = require("../Config/db");
+const jwt = require("jsonwebtoken");
+
 const Pool = require('pg').Pool;
-const db = new Pool({
-    user: 'postgres',  //Database username
-    host: 'localhost',  //Database host
-    database: 'maphoskho_db', //Database database
-    password: 'admin12345', //Database password
-    port: 5432//Database port
-  });
+require('dotenv').config();
 
 
 exports.addInvoice = async (req, res)=>{
@@ -120,26 +117,6 @@ exports.getInvoices = async (req, res)=>{
     })
     
 }
-
-// exports.deleteInvoice = async (req, res)=>{
-
-//     const sql = 'UPDATE invoices SET hidden = $2 WHERE invoice_id = $1';
-//     db.query(sql,[req.params.invoice_id,true],(error,results)=>{
-//         if(error)
-//         {
-//             res.status(400).json({message:'Query failed'});
-//         }else{
-
-//             res.status(200).json({message:'Invoice Deleted'});
-
-//         }
-
-//     })
-    
-// }
-
-
-
 
 
 exports.updateStatus = async (req, res)=>{

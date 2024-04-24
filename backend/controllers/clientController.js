@@ -1,12 +1,8 @@
+const db = require("../Config/db");
+const jwt = require("jsonwebtoken");
 
 const Pool = require('pg').Pool;
-const db = new Pool({
-    user: 'postgres',  //Database username
-    host: 'localhost',  //Database host
-    database: 'maphoskho_db', //Database database
-    password: 'admin12345', //Database password
-    port: 5432//Database port
-  });
+require('dotenv').config();
 
 
 exports.addClient = async (req, res)=>{

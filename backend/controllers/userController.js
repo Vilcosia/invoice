@@ -1,18 +1,8 @@
-//const db = require("../config/db");
+const db = require("../Config/db");
 const jwt = require("jsonwebtoken");
 
 const Pool = require('pg').Pool;
 require('dotenv').config();
-
-
-const db = new Pool({
-    user: "postgres" ,
-    host:"localhost",  
-    database: "maphoskho_db", 
-    password: "Lethabo2015!!", 
-    port: "5432"
-  });
-
 
 exports.register = async (req, res)=>{ 
     console.log(req.body)
@@ -126,8 +116,7 @@ exports.updateUser = async (req, res)=>{
 }
 
 exports.updateImage = async (req,res) => {
-    //console.log(req.body.link)
-
+    
     const link = req.body.link;
     const user_id = req.params.user_id;
 
